@@ -1,0 +1,311 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glow Up Store | Panel de Administración</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .admin-badge {
+            background: linear-gradient(135deg, #ff6b6b, #ee5a5a);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="contenedor">
+        <div class="header">
+            <div class="logo-tienda">
+                <img src="https://i.ibb.co/W4tV0WVx/logo.png" alt="Glow Up Store" loading="lazy">
+            </div>
+            <h1 class="brand-name">glow up<span> store</span> <span class="admin-badge">ADMIN</span></h1>
+            <div style="display: flex; gap: 10px;">
+                <button class="btn-editar-header" onclick="toggleModoEdicion()" title="Editar productos">✏️ Editar</button>
+                <button class="btn-editar-header" onclick="exportarProductos()" title="Exportar productos al código" style="background: linear-gradient(135deg, #4CAF50, #45a049);">📤 Exportar</button>
+            </div>
+        </div>
+
+        <!-- PANTALLA INICIO -->
+        <div id="pantalla-inicio" class="seccion visible">
+            <button class="btn-negro" onclick="irA('pantalla-maquillaje')">💄 Maquillaje <span>→</span></button>
+            <button class="btn-negro" onclick="irA('pantalla-skincare')">✨ Skincare <span>→</span></button>
+            <button class="btn-negro" onclick="irA('pantalla-capilar')">💇‍♀️ Cuidado Capilar <span>→</span></button>
+            <button class="btn-negro" onclick="irA('pantalla-accesorios')">💍 Accesorios <span>→</span></button>
+            <button class="btn-negro" onclick="irA('pantalla-detalles')">🎁 Detalles <span>→</span></button>
+        </div>
+
+        <!-- PANTALLA MAQUILLAJE -->
+        <div id="pantalla-maquillaje" class="seccion">
+            <button class="btn-volver" onclick="irA('pantalla-inicio')">← Volver</button>
+            <h4>💄 Maquillaje</h4>
+            <div class="grid-sub">
+                <button class="btn-subcategoria" onclick="irA('pantalla-labios')">💋 Labios</button>
+                <button class="btn-subcategoria" onclick="irA('pantalla-ojos')">👁️ Ojos</button>
+                <button class="btn-subcategoria" onclick="irA('pantalla-rostro')">✨ Rostro</button>
+            </div>
+        </div>
+
+        <!-- PANTALLA LABIOS -->
+        <div id="pantalla-labios" class="seccion">
+            <button class="btn-volver" onclick="irA('pantalla-maquillaje')">← Volver</button>
+            <h4>💋 Labios</h4>
+            <div class="grid" id="grid-labios"></div>
+        </div>
+
+        <!-- PANTALLA OJOS -->
+        <div id="pantalla-ojos" class="seccion">
+            <button class="btn-volver" onclick="irA('pantalla-maquillaje')">← Volver</button>
+            <h4>👁️ Ojos</h4>
+            <div class="grid" id="grid-ojos"></div>
+        </div>
+
+        <!-- PANTALLA ROSTRO -->
+        <div id="pantalla-rostro" class="seccion">
+            <button class="btn-volver" onclick="irA('pantalla-maquillaje')">← Volver</button>
+            <h4>✨ Rostro</h4>
+            <div class="grid" id="grid-rostro"></div>
+        </div>
+
+        <!-- PANTALLA SKINCARE -->
+        <div id="pantalla-skincare" class="seccion">
+            <button class="btn-volver" onclick="irA('pantalla-inicio')">← Volver</button>
+            <h4>✨ Skincare</h4>
+            <div class="grid-sub">
+                <button class="btn-subcategoria" onclick="irA('pantalla-skincare-facial')">😊 Skincare Facial</button>
+                <button class="btn-subcategoria" onclick="irA('pantalla-skincare-corporal')">💆 Skincare Corporal</button>
+            </div>
+        </div>
+
+        <!-- PANTALLA SKINCARE FACIAL -->
+        <div id="pantalla-skincare-facial" class="seccion">
+            <button class="btn-volver" onclick="irA('pantalla-skincare')">← Volver</button>
+            <h4>😊 Skincare Facial</h4>
+            <div class="grid" id="grid-skincare-facial"></div>
+        </div>
+
+        <!-- PANTALLA SKINCARE CORPORAL -->
+        <div id="pantalla-skincare-corporal" class="seccion">
+            <button class="btn-volver" onclick="irA('pantalla-skincare')">← Volver</button>
+            <h4>💆 Skincare Corporal</h4>
+            <div class="grid" id="grid-skincare-corporal"></div>
+        </div>
+
+        <!-- PANTALLA CAPILAR -->
+        <div id="pantalla-capilar" class="seccion">
+            <button class="btn-volver" onclick="irA('pantalla-inicio')">← Volver</button>
+            <h4>💇‍♀️ Cuidado Capilar</h4>
+            <div class="grid-sub">
+                <button class="btn-subcategoria" onclick="irA('pantalla-capilar-kaba')">🧴 Kaba</button>
+                <button class="btn-subcategoria" onclick="irA('pantalla-capilar-ritual-botanico')">🌿 Ritual Botánico</button>
+                <button class="btn-subcategoria" onclick="irA('pantalla-capilar-milagros')">✨ Milagros</button>
+                <button class="btn-subcategoria" onclick="irA('pantalla-capilar-click-hair')">💇 Click Hair</button>
+                <button class="btn-subcategoria" onclick="irA('pantalla-capilar-la-posion')">🧪 La Poción</button>
+                <button class="btn-subcategoria" onclick="irA('pantalla-capilar-skala')">🌺 Skala</button>
+                <button class="btn-subcategoria" onclick="irA('pantalla-capilar-la-receta')">📜 La Receta</button>
+                <button class="btn-subcategoria" onclick="irA('pantalla-capilar-lissia')">💜 LiSSIA</button>
+            </div>
+        </div>
+
+        <!-- PANTALLA CAPILAR KABA -->
+        <div id="pantalla-capilar-kaba" class="seccion">
+            <button class="btn-volver" onclick="irA('pantalla-capilar')">← Volver</button>
+            <h4>🧴 Kaba</h4>
+            <div class="grid" id="grid-capilar-kaba"></div>
+        </div>
+
+        <!-- PANTALLA CAPILAR RITUAL BOTANICO -->
+        <div id="pantalla-capilar-ritual-botanico" class="seccion">
+            <button class="btn-volver" onclick="irA('pantalla-capilar')">← Volver</button>
+            <h4>🌿 Ritual Botánico</h4>
+            <div class="grid" id="grid-capilar-ritual-botanico"></div>
+        </div>
+
+        <!-- PANTALLA CAPILAR MILAGROS -->
+        <div id="pantalla-capilar-milagros" class="seccion">
+            <button class="btn-volver" onclick="irA('pantalla-capilar')">← Volver</button>
+            <h4>✨ Milagros</h4>
+            <div class="grid" id="grid-capilar-milagros"></div>
+        </div>
+
+        <!-- PANTALLA CAPILAR CLICK HAIR -->
+        <div id="pantalla-capilar-click-hair" class="seccion">
+            <button class="btn-volver" onclick="irA('pantalla-capilar')">← Volver</button>
+            <h4>💇 Click Hair</h4>
+            <div class="grid" id="grid-capilar-click-hair"></div>
+        </div>
+
+        <!-- PANTALLA CAPILAR LA POSION -->
+        <div id="pantalla-capilar-la-posion" class="seccion">
+            <button class="btn-volver" onclick="irA('pantalla-capilar')">← Volver</button>
+            <h4>🧪 La Poción</h4>
+            <div class="grid" id="grid-capilar-la-posion"></div>
+        </div>
+
+        <!-- PANTALLA CAPILAR SKALA -->
+        <div id="pantalla-capilar-skala" class="seccion">
+            <button class="btn-volver" onclick="irA('pantalla-capilar')">← Volver</button>
+            <h4>🌺 Skala</h4>
+            <div class="grid" id="grid-capilar-skala"></div>
+        </div>
+
+        <!-- PANTALLA CAPILAR LA RECETA -->
+        <div id="pantalla-capilar-la-receta" class="seccion">
+            <button class="btn-volver" onclick="irA('pantalla-capilar')">← Volver</button>
+            <h4>📜 La Receta</h4>
+            <div class="grid" id="grid-capilar-la-receta"></div>
+        </div>
+
+        <!-- PANTALLA CAPILAR LISSIA -->
+        <div id="pantalla-capilar-lissia" class="seccion">
+            <button class="btn-volver" onclick="irA('pantalla-capilar')">← Volver</button>
+            <h4>💜 LiSSIA</h4>
+            <div class="grid" id="grid-capilar-lissia"></div>
+        </div>
+
+        <!-- PANTALLA ACCESORIOS -->
+        <div id="pantalla-accesorios" class="seccion">
+            <button class="btn-volver" onclick="irA('pantalla-inicio')">← Volver</button>
+            <h4>💍 Accesorios</h4>
+            <div class="grid-sub">
+                <button class="btn-subcategoria" onclick="irA('pantalla-acc-cabello')">💇 Cabello</button>
+                <button class="btn-subcategoria" onclick="irA('pantalla-acc-rostro')">👩‍🦰 Rostro</button>
+                <button class="btn-subcategoria" onclick="irA('pantalla-acc-varios')">✨ Varios</button>
+            </div>
+        </div>
+
+        <!-- PANTALLA ACCESORIOS CABELLO -->
+        <div id="pantalla-acc-cabello" class="seccion">
+            <button class="btn-volver" onclick="irA('pantalla-accesorios')">← Volver</button>
+            <h4>💇 Accesorios Cabello</h4>
+            <div class="grid" id="grid-acc-cabello"></div>
+        </div>
+
+        <!-- PANTALLA ACCESORIOS ROSTRO -->
+        <div id="pantalla-acc-rostro" class="seccion">
+            <button class="btn-volver" onclick="irA('pantalla-accesorios')">← Volver</button>
+            <h4>👩‍🦰 Accesorios Rostro</h4>
+            <div class="grid" id="grid-acc-rostro"></div>
+        </div>
+
+        <!-- PANTALLA ACCESORIOS VARIOS -->
+        <div id="pantalla-acc-varios" class="seccion">
+            <button class="btn-volver" onclick="irA('pantalla-accesorios')">← Volver</button>
+            <h4>✨ Varios</h4>
+            <div class="grid" id="grid-acc-varios"></div>
+        </div>
+
+        <!-- PANTALLA DETALLES -->
+        <div id="pantalla-detalles" class="seccion">
+            <button class="btn-volver" onclick="irA('pantalla-inicio')">← Volver</button>
+            <h4>🎁 Detalles</h4>
+            <div class="grid-sub">
+                <button class="btn-subcategoria" onclick="irA('pantalla-det-ramos')">💐 Ramos Maquillaje</button>
+                <button class="btn-subcategoria" onclick="irA('pantalla-det-kits')">🎁 Kits Regalo</button>
+                <button class="btn-subcategoria" onclick="irA('pantalla-det-personalizados')">✨ Detalles Personalizados</button>
+            </div>
+        </div>
+
+        <!-- PANTALLA RAMOS DE MAQUILLAJE -->
+        <div id="pantalla-det-ramos" class="seccion">
+            <button class="btn-volver" onclick="irA('pantalla-detalles')">← Volver</button>
+            <h4>💐 Ramos Maquillaje</h4>
+            <div class="grid" id="grid-det-ramos"></div>
+        </div>
+
+        <!-- PANTALLA KITS REGALO -->
+        <div id="pantalla-det-kits" class="seccion">
+            <button class="btn-volver" onclick="irA('pantalla-detalles')">← Volver</button>
+            <h4>🎁 Kits Regalo</h4>
+            <div class="grid" id="grid-det-kits"></div>
+        </div>
+
+        <!-- PANTALLA DETALLES PERSONALIZADOS -->
+        <div id="pantalla-det-personalizados" class="seccion">
+            <button class="btn-volver" onclick="irA('pantalla-detalles')">← Volver</button>
+            <h4>✨ Detalles Personalizados</h4>
+            <div class="grid" id="grid-det-personalizados"></div>
+        </div>
+    </div>
+
+    <!-- CARRITO -->
+    <div class="carrito-badge" onclick="abrirCarrito()">
+        <span id="contador-carrito">0</span>
+    </div>
+
+    <div id="modal-carrito" class="modal-carrito">
+        <div class="modal-contenido">
+            <div class="modal-header">
+                <h2>🛍️ Mi Carrito</h2>
+                <button class="cerrar-modal" onclick="cerrarCarrito()">✕</button>
+            </div>
+            <div id="items-carrito"></div>
+            <div class="total" id="total-carrito"></div>
+        </div>
+    </div>
+
+    <!-- MODAL EDICIÓN -->
+    <div id="modal-editar" class="modal-editar">
+        <div class="form-editar">
+            <h2>Editar Tarjeta</h2>
+            <button class="btn-agregar-tarjeta" onclick="agregarTarjeta()">+ Agregar Tarjeta Nueva</button>
+            <div id="productos-editables"></div>
+            <div class="form-group">
+                <label for="edit-nombre">Nombre del Producto:</label>
+                <input type="text" id="edit-nombre" placeholder="Ej: Labial Mate">
+            </div>
+            <div class="form-group">
+                <label for="edit-precio">Precio:</label>
+                <input type="number" id="edit-precio" placeholder="Ej: 25000" step="1">
+            </div>
+            <div class="form-group">
+                <label for="edit-imagen">URL de la Imagen:</label>
+                <input type="text" id="edit-imagen" placeholder="Pega una URL de imagen https://...">
+            </div>
+            <div class="form-group">
+                <label for="edit-descripcion">Descripción:</label>
+                <input type="text" id="edit-descripcion" placeholder="Ej: Labial de larga duración">
+            </div>
+            <div class="form-group">
+                <label for="edit-categoria">Categoría:</label>
+                <select id="edit-categoria" style="width: 100%; padding: 12px; border: 1px solid #e0e0e0; border-radius: 10px; font-family: 'Lexend', sans-serif; font-size: 1rem;">
+                    <option value="">Selecciona una categoría</option>
+                    <option value="labios">💋 Labios</option>
+                    <option value="ojos">👁️ Ojos</option>
+                    <option value="rostro">✨ Rostro</option>
+                    <option value="skincare-facial">😊 Skincare Facial</option>
+                    <option value="skincare-corporal">💆 Skincare Corporal</option>
+                    <option value="capilar-kaba">🧴 Kaba</option>
+                    <option value="capilar-ritual-botanico">🌿 Ritual Botánico</option>
+                    <option value="capilar-milagros">✨ Milagros</option>
+                    <option value="capilar-click-hair">💇 Click Hair</option>
+                    <option value="capilar-la-posion">🧪 La Poción</option>
+                    <option value="capilar-skala">🌺 Skala</option>
+                    <option value="capilar-la-receta">📜 La Receta</option>
+                    <option value="capilar-lissia">💜 LiSSIA</option>
+                    <option value="acc-cabello">💇 Accesorios Cabello</option>
+                    <option value="acc-rostro">👩‍🦰 Accesorios Rostro</option>
+                    <option value="acc-varios">✨ Accesorios Varios</option>
+                    <option value="det-ramos">💐 Ramos Maquillaje</option>
+                    <option value="det-kits">🎁 Kits Regalo</option>
+                    <option value="det-personalizados">✨ Detalles Personalizados</option>
+                </select>
+            </div>
+            <button class="btn-guardar" onclick="guardarEdicion()">✓ Guardar Cambios</button>
+            <button class="btn-cancelar" onclick="cerrarEdicion()">Cancelar</button>
+        </div>
+    </div>
+
+    <script>
+        // Activar modo edición automáticamente en admin.html
+        window.modoEdicion = true;
+    </script>
+    <script src="productos.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
